@@ -4,25 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
 import java.sql.Connection;
-import java.text.AttributedString;
-import java.awt.event.*;
-import java.awt.font.TextAttribute;
 
-import javax.swing.*;
-import javax.swing.event.InternalFrameAdapter;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
 import main.MyConnect;
 
-public class place extends JInternalFrame implements InternalFrameListener{
+public class testInterF extends JInternalFrame implements InternalFrameListener{
 	
 	Connection conn = MyConnect.getConnection();
 	private Object listenedToWindow;
 	
-	
-	public place() {
-//		super("Place Management",
+	public testInterF() {
+//		super("Test",
 //		          true, //resizable
 //		          true, //closable
 //		          true, //maximizable
@@ -46,7 +44,7 @@ public class place extends JInternalFrame implements InternalFrameListener{
 		} else {
 			System.out.println("Not Connection");
 		}
-		JLabel L1 = new JLabel("ทดสอบ",SwingConstants.CENTER);
+		JLabel L1 = new JLabel("รายงาน",SwingConstants.CENTER);
 		L1.setFont(fn2);
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
@@ -90,3 +88,4 @@ public class place extends JInternalFrame implements InternalFrameListener{
 		
 	}
 }
+
