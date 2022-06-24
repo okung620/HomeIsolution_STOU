@@ -94,7 +94,7 @@ public class place extends JInternalFrame {
 ////				txtCustMail.setText(tableCust.getValueAt(index, 4).toString());
 //			}
 //		});
-		c.add(pTable,BorderLayout.NORTH);
+//		c.add(pTable,BorderLayout.NORTH);
 	}
 	
 }
