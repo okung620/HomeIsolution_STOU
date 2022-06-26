@@ -8,12 +8,13 @@ import java.beans.PropertyVetoException;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
+import reportForm.Reportplace;
 import systemForm.*;
 
-public class mainForm extends JFrame{
+public class mainForm extends JFrame {
 	
 		Connection conn = MyConnect.getConnection();
-		JDesktopPane desktop;
+		 public JDesktopPane desktop;
 	public mainForm() {
 		Font fn = new Font("Tahoma", Font.PLAIN, 14);
 		
@@ -36,25 +37,10 @@ public class mainForm extends JFrame{
         
         // Menu 1
         JMenu menu1 = new JMenu("ระบบการจอง");
-//        JMenuItem menu1_1 = new JMenuItem("จอง");
-//        menu1.add(menu1_1);
-        JButton bt1 = new JButton("จอง");
-        setbuttonMenu(bt1);
-//        bt1.setBorder(BorderFactory.createEmptyBorder());
-//        bt1.setContentAreaFilled(false);
-//        bt1.setBorderPainted(false);
-//        menuBar.add(menu1);
-        menuBar.add(bt1);
+        JMenuItem menu1_1 = new JMenuItem("จอง");
+        menu1.add(menu1_1);
+        menuBar.add(menu1);
         
-        bt1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				desktop.removeAll();
-				desktop.repaint();
-				place framePlace = new place();
-				framePlace.setBackground(Color.red);
-				setJIF(framePlace);
-			}
-		});
         
         
         // Menu 2
@@ -67,11 +53,9 @@ public class mainForm extends JFrame{
         
         menu2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				desktop.removeAll();
-				desktop.repaint();
-				place framePlace = new place();
-				framePlace.setBackground(Color.blue);
-				setJIF(framePlace);
+				Formplace framePlace = new Formplace();
+				framePlace.showData();
+				call(framePlace);
 				
 			}
 		});
@@ -86,10 +70,9 @@ public class mainForm extends JFrame{
         
         menu3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				desktop.removeAll();
-				desktop.repaint();
-				testInterF frameTest = new testInterF();
-				setJIF(frameTest);
+				Reportplace rePlace = new Reportplace();
+				call(rePlace);
+				
 			}
 		});
         
@@ -105,38 +88,42 @@ public class mainForm extends JFrame{
 		getContentPane().setLayout(null);
 	}
 	
-	public void setJIF(JInternalFrame jif) {
+	public void call(JInternalFrame jif) {  //กำหนดค่าของ Class ที่ใช้ JInternalFrame
 		try {
 		BasicInternalFrameUI bi = (BasicInternalFrameUI)jif.getUI();
-		bi.setNorthPane(null);
+		bi.setNorthPane(null);   //เอา WindowsBar [-][_][X] ออก
 //	    Dimension desktopSize = this.getSize();
 //	    Dimension jInternalFrameSize = jif.getSize();
 //	    int width = (desktopSize.width - jInternalFrameSize.width) / 2;
 //	    int height = (desktopSize.height - jInternalFrameSize.height) / 2;
 //	    int height = 0;
 //	    jif.setLocation(width, height);
-		jif.setBorder(null);
-	    jif.setVisible(true);
-	    jif.setMaximum(true);
-	    desktop.add(jif);
-		} catch (PropertyVetoException e1) {
+		jif.setBorder(null); //เอาขอบออก
+	    jif.setVisible(true); //แสดงผล
+	    jif.setMaximum(true); //ขยายเต็มจอ
+	    desktop.removeAll();
+		desktop.repaint();
+	    desktop.add(jif); //เอา class ที่เรียกมาใส่ใน DesktopPane
+//		} catch (PropertyVetoException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
 
-	public void setbuttonMenu (JButton bt) {
-		 bt.setBackground(Color.WHITE);
-	     bt.setBorderPainted(false);
-	     bt.addMouseListener(new java.awt.event.MouseAdapter() {
-	            public void mouseEntered(java.awt.event.MouseEvent evt) {
-	            	bt.setBackground(Color.LIGHT_GRAY);
-	            }
-
-	            public void mouseExited(java.awt.event.MouseEvent evt) {
-	            	bt.setBackground(Color.WHITE);
-	            }
-	        });
-	}
+//	public void setbuttonMenu (JButton bt) {
+//		 bt.setBackground(Color.WHITE);
+//	     bt.setBorderPainted(false);
+//	     bt.addMouseListener(new java.awt.event.MouseAdapter() {
+//	            public void mouseEntered(java.awt.event.MouseEvent evt) {
+//	            	bt.setBackground(Color.LIGHT_GRAY);
+//	            }
+//
+//	            public void mouseExited(java.awt.event.MouseEvent evt) {
+//	            	bt.setBackground(Color.WHITE);
+//	            }
+//	        });
+//	}
+	
 	
 	public static void main(String[] agrs) {
 		new mainForm();

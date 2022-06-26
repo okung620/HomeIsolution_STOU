@@ -6,7 +6,7 @@ public class MyConnect {
 	public static Connection getConnection() {
 		try {
 			Class.forName(com.mysql.cj.jdbc.Driver.class.getName());
-			return DriverManager.getConnection("jdbc:mysql://localhost/homeisolation?useUnicode=true&charecterEncoding=uft-8", "root", "");
+			return DriverManager.getConnection("jdbc:mysql://localhost/homeisolation2?useUnicode=true&charecterEncoding=uft-8", "root", "");
 			
 			} 
 			catch(ClassNotFoundException | SQLException e) {
